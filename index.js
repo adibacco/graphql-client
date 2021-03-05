@@ -23,7 +23,7 @@ async function getGeoJSONBox(rectInput, pIID, campaignID) {
   });
 
   const response = await fetch(
-    'http://172.24.0.67:4000/graphql',
+    'http://mybusnago.duckdns.org:4000/graphql',
     {
       method: 'post',
       body: data,
