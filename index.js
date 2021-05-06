@@ -23,7 +23,7 @@ async function getGeoJSONBox(rectInput, pIID, campaignID) {
   });
 
   const response = await fetch(
-    'http://mybusnago.duckdns.org:4000/graphql',
+    'http://172.24.0.113:4000/graphql',
     {
       method: 'post',
       body: data,
@@ -43,6 +43,44 @@ async function getGeoJSONBox(rectInput, pIID, campaignID) {
   //console.log(json.data);
 }
 
+
+/**************/
+
+async function getSpectrumData(location) {
+
+  const data = JSON.stringify({
+    operationName: null,
+    variables: `{ }`,
+    query: `{ 
+      getSpectrumData(pointInput: {lat: 13.0, lng: 12.0 })  
+        
+      
+    }`
+  });
+
+  const response = await fetch(
+    'http://172.24.0.113:4000/graphql',
+    {
+      method: 'post',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': data.length,
+        'User-Agent': 'Node',
+      },
+    }
+  );
+
+  const json = await response.json();
+  console.timeEnd("Spectrum");
+
+  console.log(json);
+
+  return json;
+
+}
+
+
   
 // 7.013672,40.798359,13.957032,45.903791
 
@@ -58,6 +96,22 @@ async function main() {
     var result = await getGeoJSONBox(rectInput, "5264","1");
   }
 } 
+
+/*
+async function main() { 
+  while (true) {
+    var location = {
+      type: "Point",
+      coordinates: [ 13.9, 25.9 ]
+    }
+
+    console.time("Spectrum");
+
+    var result = await getSpectrumData(location);
+
+  }
+} 
+*/
 
 main(); 
 
