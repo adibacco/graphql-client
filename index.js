@@ -52,8 +52,9 @@ async function getSpectrumData(location) {
     operationName: null,
     variables: `{ }`,
     query: `{ 
-      getSpectrumData(pointInput: {lat: 13.0, lng: 12.0 })  
-        
+      getSpectrumData(campaignID: "4" , objectId: "6128a2dba607f742ab5c03f8" )  {
+        data
+      }
       
     }`
   });
@@ -84,7 +85,6 @@ async function getSpectrumData(location) {
   
 // 7.013672,40.798359,13.957032,45.903791
 
-
 async function main() { 
   while (true) {
     var rectInput = {
@@ -96,7 +96,6 @@ async function main() {
     var result = await getGeoJSONBox(rectInput, "5264","1");
   }
 } 
-
 /*
 async function main() { 
   while (true) {
@@ -112,7 +111,6 @@ async function main() {
   }
 } 
 */
-
 main(); 
 
 
